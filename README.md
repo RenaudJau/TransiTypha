@@ -1,4 +1,11 @@
-# Tuto - TransiTypha
+---
+title: "TransiTypha - Tuto"
+output: 
+  html_document:
+    keep_md: yes
+editor_options: 
+  chunk_output_type: console
+---
 
 Ce ttutoriel présente le package `TransiTypha` créé pour calculer et illustrer les "matrices de transitions" - ou "modèles d'états et transition" pour les différents états de *T. minima*.
 
@@ -24,12 +31,46 @@ La première étape est quand même sur le terrain, il faut une cartographie des
 Voici un exemple avec quelques stations fictives et le tableau qui correspondrait :
 
 ![](C:/Users/renaud.jaunatre/Documents/A_ANALYSES/TransiTypha/Carto_exemple_typha.png)
-```{r echo=FALSE}
+
+```r
 library(knitr)
-library(kableExtra)
 library(TransiTypha)
-scroll_box(kable_input = kable_styling(kable(data_ty)),height = "300px")
+kable(data_ty)
 ```
+
+
+
+|  ID| Dates| Longueur|  Limon| ArbuArbo| Freq|S1   |S2   |S3 |S4 |
+|---:|-----:|--------:|------:|--------:|----:|:----|:----|:--|:--|
+| 1.1|  2012|      145| 0.8800|     0.13| 0.45|1.1  |NA   |NA |NA |
+| 2.1|  2012|        2| 0.8600|     0.00| 0.02|2.1  |NA   |NA |NA |
+| 3.1|  2012|        6| 0.0800|     0.00| 0.30|DISP |NA   |NA |NA |
+| 4.1|  2012|       15| 0.4400|     0.35| 0.06|4.1  |NA   |NA |NA |
+| 5.1|  2012|      235| 0.3500|     0.32| 0.42|5.1  |NA   |NA |NA |
+| 5.2|  2012|      148| 0.7700|     0.26| 0.14|5.2  |NA   |NA |NA |
+| 5.3|  2012|       16| 0.2200|     0.56| 0.20|5.3  |NA   |NA |NA |
+| 1.1|  2015|       32| 0.7500|     0.00| 0.79|1.1  |NA   |NA |NA |
+| 2.1|  2015|       22| 0.4300|     0.00| 0.28|2.1  |NA   |NA |NA |
+| 4.1|  2015|       17| 0.7600|     0.67| 0.04|DISP |NA   |NA |NA |
+| 5.1|  2015|       56| 0.2100|     0.35| 0.40|5.1  |NA   |NA |NA |
+| 5.2|  2015|       14| 0.8000|     0.27| 0.12|5.2  |NA   |NA |NA |
+| 5.3|  2015|       29| 0.5700|     0.67| 0.25|DISP |NA   |NA |NA |
+| 6.1|  2015|        4| 0.2300|     0.00| 0.30|DISP |NA   |NA |NA |
+| 1.1|  2018|       79| 0.8770|     0.47| 0.48|1.1  |DISP |NA |NA |
+| 2.1|  2018|       39| 0.4400|     0.11| 0.23|2.1  |NA   |NA |NA |
+| 5.1|  2018|       59| 0.6540|     0.89| 0.52|5.1  |5.2  |NA |NA |
+| 5.2|  2018|       46| 0.3000|     0.17| 0.88|5.3  |NA   |NA |NA |
+| 7.1|  2018|        8| 0.0500|     0.03| 0.60|DISP |NA   |NA |NA |
+| 8.1|  2018|       17| 0.3500|     0.10| 0.03|DISP |NA   |NA |NA |
+| 8.2|  2018|        5| 0.5346|     0.20| 0.50|8.2  |NA   |NA |NA |
+| 1.1|  2021|      137| 0.4000|     0.83| 0.62|NA   |NA   |NA |NA |
+| 2.1|  2021|       58| 0.8660|     0.00| 0.92|NA   |NA   |NA |NA |
+| 5.1|  2021|       48| 0.6600|     0.89| 0.27|NA   |NA   |NA |NA |
+| 5.2|  2021|        3| 0.4533|     0.80| 0.64|NA   |NA   |NA |NA |
+| 5.3|  2021|      120| 0.7000|     0.23| 0.36|NA   |NA   |NA |NA |
+| 5.4|  2021|        1| 0.3300|     0.71| 0.79|NA   |NA   |NA |NA |
+| 8.2|  2021|       25| 0.6600|     0.12| 0.05|NA   |NA   |NA |NA |
+| 9.1|  2021|        2| 0.0200|     0.00| 0.70|NA   |NA   |NA |NA |
 
 Conseils pour le remplissage des colonnes de suivi :
 
@@ -52,7 +93,8 @@ A venir.. j'espère un jour
 
 Il faut ouvrir les données et le package, nous on utilisera les données d'exemples `data_ty` inclues dans le package.
 
-```{r}
+
+```r
 library(TransiTypha)
 data_ty <- data_ty # il s'agit du tableau montré plus haut
 # On spécifie la partie ‘suivi’ (ici les colonnes 7 à 10) :
@@ -63,7 +105,8 @@ suivi <- data_ty[,7:10]
 
 Il s'agit de la fonction pour attribuer les catégories et pour calculer les transitions :
 
-```{r}
+
+```r
 Typhamat_all <- mattrans.calc(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
                                 ARB = data_ty$ArbuArbo, LIMONS = data_ty$Limon,
                                 ANNEES = data_ty$Dates, IDSTATION = data_ty$ID, SUIVI = suivi)
@@ -71,33 +114,83 @@ Typhamat_all <- mattrans.calc(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
 
 On peut voir la classification des stations :
 
-```{r}
+
+```r
 Typhamat_all$Classification
 ```
-```{r eval=FALSE}
-data.frame(station = data_ty$ID, Dates = data_ty$Dates,
-            Classification = Typhamat_all$Classification)
+
 ```
-```{r echo=FALSE}
-scroll_box(kable_input = kable_styling(kable(data.frame(station = data_ty$ID, Dates = data_ty$Dates,
-            Classification = Typhamat_all$Classification))),height = "300px")
+##  [1] "4_Grande_pionniere"  "1_Petite_pionniere"  "2_Petite_galets"    
+##  [4] "3_Petite_mature"     "5_Grande_mature"     "6_Moyenne_pionniere"
+##  [7] "7_Moyenne_mature"    "4_Grande_pionniere"  "6_Moyenne_pionniere"
+## [10] "3_Petite_mature"     "5_Grande_mature"     "6_Moyenne_pionniere"
+## [13] "7_Moyenne_mature"    "1_Petite_pionniere"  "5_Grande_mature"    
+## [16] "6_Moyenne_pionniere" "5_Grande_mature"     "4_Grande_pionniere" 
+## [19] "2_Petite_galets"     "1_Petite_pionniere"  "1_Petite_pionniere" 
+## [22] "5_Grande_mature"     "4_Grande_pionniere"  "7_Moyenne_mature"   
+## [25] "3_Petite_mature"     "4_Grande_pionniere"  "3_Petite_mature"    
+## [28] "1_Petite_pionniere"  "2_Petite_galets"
 ```
+
+```r
+kable(data.frame(station = data_ty$ID, Dates = data_ty$Dates,
+            Classification = Typhamat_all$Classification))
+```
+
+
+
+| station| Dates|Classification      |
+|-------:|-----:|:-------------------|
+|     1.1|  2012|4_Grande_pionniere  |
+|     2.1|  2012|1_Petite_pionniere  |
+|     3.1|  2012|2_Petite_galets     |
+|     4.1|  2012|3_Petite_mature     |
+|     5.1|  2012|5_Grande_mature     |
+|     5.2|  2012|6_Moyenne_pionniere |
+|     5.3|  2012|7_Moyenne_mature    |
+|     1.1|  2015|4_Grande_pionniere  |
+|     2.1|  2015|6_Moyenne_pionniere |
+|     4.1|  2015|3_Petite_mature     |
+|     5.1|  2015|5_Grande_mature     |
+|     5.2|  2015|6_Moyenne_pionniere |
+|     5.3|  2015|7_Moyenne_mature    |
+|     6.1|  2015|1_Petite_pionniere  |
+|     1.1|  2018|5_Grande_mature     |
+|     2.1|  2018|6_Moyenne_pionniere |
+|     5.1|  2018|5_Grande_mature     |
+|     5.2|  2018|4_Grande_pionniere  |
+|     7.1|  2018|2_Petite_galets     |
+|     8.1|  2018|1_Petite_pionniere  |
+|     8.2|  2018|1_Petite_pionniere  |
+|     1.1|  2021|5_Grande_mature     |
+|     2.1|  2021|4_Grande_pionniere  |
+|     5.1|  2021|7_Moyenne_mature    |
+|     5.2|  2021|3_Petite_mature     |
+|     5.3|  2021|4_Grande_pionniere  |
+|     5.4|  2021|3_Petite_mature     |
+|     8.2|  2021|1_Petite_pionniere  |
+|     9.1|  2021|2_Petite_galets     |
 
 On peut voir la matrice de transition :
 
-```{r eval=FALSE}
-Typhamat_all$Matrice_transition
-```
-```{r echo=FALSE}
-scroll_box(kable_input = kable_styling(kable(round(Typhamat_all$Matrice_transition,2))),height = "300px", width = "600px")
+
+```r
+kable(Typhamat_all$Matrice_transition)
 ```
 
 Les lignes représentent les points de départs et les colonnes les points d'arrivées. En gros, en regardant les données d'exemple, sur la première ligne on peut voir que les stations de type "petite pionnière" ont 25% de chance de rester dans la même catégorie, 25% de passer à moyenne pionnière et 50% de disparaître. 
 
 La fonction `mattrans.calc` renvoie un objet contenant d'autres informations :
 
-```{r}
+
+```r
 names(Typhamat_all)
+```
+
+```
+## [1] "Classification"     "Matrice_transition" "Nb_type"           
+## [4] "N_NA"               "NDisptot"           "Nb_Disp"           
+## [7] "Prop_Disp"          "Nb_App"
 ```
 
 Pour savoir en détail ce qu'il y a dedans, aller dans `?mattrans.calc`. Ce sont souvent des données néccessaire pour les autres fonctions graphique du package.
@@ -112,7 +205,8 @@ En utilisation, simplifié, il n'y a pas besoin de définir les seuils pour chaq
 * `s_limons` (0.2 par défaut) : seuil de recouvrement pour passer de petites galets à autre forme de petite
 * `s_arb` (0.3 par défaut) : seuil de recouvrement des strates arbustives et arborées pour passer de type pionnière à mature
 
-```{r eval=FALSE}
+
+```r
 Typhamat_all_modif <- mattrans.calc(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
                                 ARB = data_ty$ArbuArbo, LIMONS = data_ty$Limon,
                                 ANNEES = data_ty$Dates, IDSTATION = data_ty$ID, SUIVI = suivi, 
@@ -124,22 +218,28 @@ Typhamat_all_modif <- mattrans.calc(TAILLE = data_ty$Longueur, FREQ = data_ty$Fr
 
 Elle permet de tracer le graphe des transitions, elle utilise les données issues de la fonction `mattrans.calc` que pour l'exemple, nous avons appellé `Typhamat_all`. Ici, il y a besoin de `$Matrice_transition` et de `$Classification` et également des dates de relevé des taches. 
 
-```{r}
+
+```r
 Typha_transition_graph(MATTRANS = Typhamat_all$Matrice_transition,
                         CLASSIF = Typhamat_all$Classification,
                         ANNEES = data_ty$Dates)
 ```
 
+![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+
 Les noeuds du graphique représentent les types de tache, avec une taille proportionnelle au nombre de tache correspondant à ce type de point de départ. Les flèches représentent les transitions possibles, avec une taille proportionnelle à la probabilité de la transition. Pour plus de lisibilité, par défaut, seuls les transition avec une probabilité > 10% sont illustrées.
 
 #### Possibilité de customiser le graphique..
 
-```{r}
+
+```r
 Typha_transition_graph(MATTRANS = Typhamat_all$Matrice_transition,
                         CLASSIF = Typhamat_all$Classification,
                         ANNEES = data_ty$Dates,LISTCOUL = c(1:8), WIDTH = 5, DEL = .5,
                        CURVE = .6,ARROW = 3,SIZE = 200, LABELS = paste("Type",c(1:8)))
 ```
+
+![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
 * LISTCOUL liste de couleurs à utiliser pour les types de stations
 * WIDTH épaisseur des transitions
@@ -155,10 +255,13 @@ Permet de tracer pour un type de station, les proportions de ses devenirs..
 
 Par exemple pour le type grande pionnière :
 
-```{r}
+
+```r
 barplot_devenir(TYPE = "4_Grande_pionniere",ANNEES = data_ty$Dates,
                  MATTRANS = Typhamat_all$Matrice_transitio,CLASSIF = Typhamat_all$Classification)
 ```
+
+![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
 Possibilité de customisation du graphique avec quelques autres arguments, cf `?barplot_devenir`.
 
@@ -167,10 +270,13 @@ Possibilité de customisation du graphique avec quelques autres arguments, cf `?
 
 Permet de tracer le bilan des disparitions (le n, corresponds au nombre de stations complètement disparues sur la période donnée), alors que la proportion correspond au nombre de portion de tache (si une tache a été diminuée de moitié par exemple et que ça a été bien spécifié dans le tableau suivi)
 
-```{r}
+
+```r
 barplot_disparitions(PROP_DISP = Typhamat_all$Prop_Disp, STAT_DISP = Typhamat_all$Nb_Disp,
                       MATTRANS = Typhamat_all$Matrice_transition)
 ```
+
+![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 
 Possibilité de customisation du graphique avec quelques autres arguments, cf `?barplot_disparitions`.
 
@@ -178,9 +284,12 @@ Possibilité de customisation du graphique avec quelques autres arguments, cf `?
 
 Idem pour les taches apparues.
 
-```{r}
+
+```r
 barplot_apparitions(APPAR = Typhamat_all$Nb_App, MATTRANS = Typhamat_all$Matrice_transition)
 ```
+
+![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 Possibilité de customisation du graphique avec quelques autres arguments, cf `?barplot_apparitions`.
 
