@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-Ce ttutoriel présente le package `TransiTypha` créé pour calculer et illustrer les "matrices de transitions" - ou "modèles d'états et transition" pour les différents états de *T. minima*.
+Ce tutoriel présente le package `TransiTypha` créé pour calculer et illustrer les "matrices de transitions" - ou "modèles d'états et transition" pour les différents états de *T. minima*.
 
 Voici les différents états possibles que nous avons déterminés :
 
@@ -52,7 +52,31 @@ Ce n'est pas possible d'exprimer toute la finesse de ce qui se passe sur le terr
 
 ### Installation du package :
 
-A venir.. j'espère un jour
+Si ce n'est pas encore fait, vous aurez besoin de `devtools`:
+
+```{r eval=FALSE}
+install.packages(devtools)
+```
+
+de le charger `devtools:
+
+```{r eval=FALSE}
+library(devtools) 
+```
+
+D'installer le package `TransiTypha`:
+
+```{r eval=FALSE}
+install_github("RenaudJau/TransiTypha")
+```
+
+Et de le charger :
+
+```{r}
+library(TransiTypha)
+```
+
+Les prochaine fois, il n'y a que la dernière ligne à envoyer..
 
 ### Ouverture du package
 

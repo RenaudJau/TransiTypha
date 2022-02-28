@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-Ce ttutoriel présente le package `TransiTypha` créé pour calculer et illustrer les "matrices de transitions" - ou "modèles d'états et transition" pour les différents états de *T. minima*.
+Ce tutoriel présente le package `TransiTypha` créé pour calculer et illustrer les "matrices de transitions" - ou "modèles d'états et transition" pour les différents états de *T. minima*.
 
 Voici les différents états possibles que nous avons déterminés :
 
@@ -87,7 +87,35 @@ Ce n'est pas possible d'exprimer toute la finesse de ce qui se passe sur le terr
 
 ### Installation du package :
 
-A venir.. j'espère un jour
+Si ce n'est pas encore fait, vous aurez besoin de `devtools`:
+
+
+```r
+install.packages(devtools)
+```
+
+de le charger `devtools:
+
+
+```r
+library(devtools) 
+```
+
+D'installer le package `TransiTypha`:
+
+
+```r
+install_github("RenaudJau/TransiTypha")
+```
+
+Et de le charger :
+
+
+```r
+library(TransiTypha)
+```
+
+Les prochaine fois, il n'y a que la dernière ligne à envoyer..
 
 ### Ouverture du package
 
@@ -225,7 +253,7 @@ Typha_transition_graph(MATTRANS = Typhamat_all$Matrice_transition,
                         ANNEES = data_ty$Dates)
 ```
 
-![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 Les noeuds du graphique représentent les types de tache, avec une taille proportionnelle au nombre de tache correspondant à ce type de point de départ. Les flèches représentent les transitions possibles, avec une taille proportionnelle à la probabilité de la transition. Pour plus de lisibilité, par défaut, seuls les transition avec une probabilité > 10% sont illustrées.
 
@@ -239,7 +267,7 @@ Typha_transition_graph(MATTRANS = Typhamat_all$Matrice_transition,
                        CURVE = .6,ARROW = 3,SIZE = 200, LABELS = paste("Type",c(1:8)))
 ```
 
-![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
 * LISTCOUL liste de couleurs à utiliser pour les types de stations
 * WIDTH épaisseur des transitions
@@ -261,7 +289,7 @@ barplot_devenir(TYPE = "4_Grande_pionniere",ANNEES = data_ty$Dates,
                  MATTRANS = Typhamat_all$Matrice_transitio,CLASSIF = Typhamat_all$Classification)
 ```
 
-![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
 
 Possibilité de customisation du graphique avec quelques autres arguments, cf `?barplot_devenir`.
 
@@ -276,7 +304,7 @@ barplot_disparitions(PROP_DISP = Typhamat_all$Prop_Disp, STAT_DISP = Typhamat_al
                       MATTRANS = Typhamat_all$Matrice_transition)
 ```
 
-![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
 
 Possibilité de customisation du graphique avec quelques autres arguments, cf `?barplot_disparitions`.
 
@@ -289,7 +317,7 @@ Idem pour les taches apparues.
 barplot_apparitions(APPAR = Typhamat_all$Nb_App, MATTRANS = Typhamat_all$Matrice_transition)
 ```
 
-![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+![](Tutoriel_TransiTypha_pourReadme_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
 Possibilité de customisation du graphique avec quelques autres arguments, cf `?barplot_apparitions`.
 
