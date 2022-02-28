@@ -51,7 +51,7 @@ Ce n'est pas possible d'exprimer toute la finesse de ce qui se passe sur le terr
 
 ### Installation du package :
 
-A venir..
+A venir.. j'espère un jour
 
 ### Ouverture du package
 
