@@ -2,7 +2,7 @@
 ##----------- Elements pour la construction du package --------------##
 #---------------------------------------------------------------------#
 
-#-------- package dependencies -------------
+#-------- package dependencies  -------------
 
 library(devtools)
 use_package("igraph","imports")
@@ -16,6 +16,7 @@ use_data(data_ty,overwrite=TRUE)
 
 
 #------------- Manuel pdf ----------------
+# Ne fonctionne pas.. doit me manquer un éléments de Latex..
 pack <- "TransiTypha"
 path <- find.package(pack)
 system(paste(shQuote(file.path(R.home("bin"), "R")),
