@@ -32,7 +32,7 @@
 #' # On spécifie la partie ‘suivi’ (ici les colonnes 7 à 10) :
 #' suivi <- data_ty[,7:10]
 #'
-#' Typhamat_all <- mattrans.calc2(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
+#' Typhamat_all <- mattrans.calc(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
 #'                                ARB = data_ty$ArbuArbo, LIMONS = data_ty$Limon,
 #'                                ANNEES = data_ty$Dates, IDSTATION = data_ty$ID, SUIVI = suivi)
 #' # On peut voir la Classification des stations
@@ -170,8 +170,8 @@ mattrans.calc <- function(TAILLE, FREQ, ARB, LIMONS, ANNEES, IDSTATION, SUIVI,
 
 
 #' Typha_transition_graph - permet de tracer les états et les transitions
-#' @param MATTRANS la matrice de transition calculée avec mattrans.calc2 cf $Matrice_transition
-#' @param CLASSIF la classification calculée avec mattrans.calc2 cf $Classification
+#' @param MATTRANS la matrice de transition calculée avec mattrans.calc cf $Matrice_transition
+#' @param CLASSIF la classification calculée avec mattrans.calc cf $Classification
 #' @param ANNEES vecteur de même dimension que IDSTATION, l'année de visite de la station
 #' @param LISTCOUL (facultatif) liste de couleurs à utiliser pour les types de stations
 #' @param WIDTH (facultatif) épaisseur des transitions
@@ -194,7 +194,7 @@ mattrans.calc <- function(TAILLE, FREQ, ARB, LIMONS, ANNEES, IDSTATION, SUIVI,
 #' # On spécifie la partie ‘suivi’ (ici les colonnes 7 à 10) :
 #' suivi <- data_ty[,7:10]
 #'
-#' Typhamat_all <- mattrans.calc2(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
+#' Typhamat_all <- mattrans.calc(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
 #'                                ARB = data_ty$ArbuArbo, LIMONS = data_ty$Limon,
 #'                                ANNEES = data_ty$Dates, IDSTATION = data_ty$ID, SUIVI = suivi)
 #' # On peut voir la Classification des stations
@@ -291,8 +291,8 @@ Typha_transition_graph <- function(MATTRANS, CLASSIF, ANNEES,
 #'
 #' @param TYPE le nom d'un des types de stations 'doit êre entre guillemets et respecter la syntaxe..)
 #' @param ANNEES vecteur de même dimension que IDSTATION, l'année de visite de la station
-#' @param MATTRANS la matrice de transition calculée avec mattrans.calc2 cf $Matrice_transition
-#' @param CLASSIF la classification calculée avec mattrans.calc2 cf $Classification
+#' @param MATTRANS la matrice de transition calculée avec mattrans.calc cf $Matrice_transition
+#' @param CLASSIF la classification calculée avec mattrans.calc cf $Classification
 #' @param POS "left" ou "right" donne la position des noms et nombre des types..
 #' @param XLIM permet de changer les limites de l'axe des x doit être sous format c(n,n)
 #' @param XLAB permet de changer le titre de l'axe des x doit être entre guillemets
@@ -312,7 +312,7 @@ Typha_transition_graph <- function(MATTRANS, CLASSIF, ANNEES,
 #' # On spécifie la partie ‘suivi’ (ici les colonnes 7 à 10) :
 #' suivi <- data_ty[,7:10]
 #'
-#' Typhamat_all <- mattrans.calc2(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
+#' Typhamat_all <- mattrans.calc(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
 #'                                ARB = data_ty$ArbuArbo, LIMONS = data_ty$Limon,
 #'                                ANNEES = data_ty$Dates, IDSTATION = data_ty$ID, SUIVI = suivi)
 #' # On peut voir la Classification des stations
@@ -364,9 +364,9 @@ barplot_devenir <- function(TYPE, ANNEES, MATTRANS, CLASSIF, POS = "left", XLIM 
 
 #' barplot_disparitions - trace pour l'ensemble des stations disparues, la proportion par type de station
 #'
-#' @param PROP_DISP vecteur nommé, donne la proportion de portions de stations par type de station, calculé par mattrans.calc2 cf $Prop_Disp
-#' @param STAT_DISP vecteur nommé, donne le nombre de station disparue entièrement par type de station, calculé par mattrans.calc2 cf $Nb_Disp
-#' @param MATTRANS la matrice de transition calculée avec mattrans.calc2 cf $Matrice_transition
+#' @param PROP_DISP vecteur nommé, donne la proportion de portions de stations par type de station, calculé par mattrans.calc cf $Prop_Disp
+#' @param STAT_DISP vecteur nommé, donne le nombre de station disparue entièrement par type de station, calculé par mattrans.calc cf $Nb_Disp
+#' @param MATTRANS la matrice de transition calculée avec mattrans.calc cf $Matrice_transition
 #' @param POS "left" ou "right" donne la position des noms et nombre des types..
 #' @param XLIM permet de changer les limites de l'axe des x doit être sous format c(n,n)
 #' @param XLAB permet de changer le titre de l'axe des x doit être entre guillemets
@@ -386,7 +386,7 @@ barplot_devenir <- function(TYPE, ANNEES, MATTRANS, CLASSIF, POS = "left", XLIM 
 #' # On spécifie la partie ‘suivi’ (ici les colonnes 7 à 10) :
 #' suivi <- data_ty[,7:10]
 #'
-#' Typhamat_all <- mattrans.calc2(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
+#' Typhamat_all <- mattrans.calc(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
 #'                                ARB = data_ty$ArbuArbo, LIMONS = data_ty$Limon,
 #'                                ANNEES = data_ty$Dates, IDSTATION = data_ty$ID, SUIVI = suivi)
 #' # On peut voir la Classification des stations
@@ -428,8 +428,8 @@ barplot_disparitions <- function(PROP_DISP, STAT_DISP, MATTRANS, POS = "left", X
 
 #' barplot_apparitions - trace pour l'ensemble des stations apparues, les proportions par type
 #'
-#' @param APPAR le nombre d'apparition par type, calculé avec mattrans.calc2 cf $Nb_App
-#' @param MATTRANS la matrice de transition calculée avec mattrans.calc2 cf $Matrice_transition
+#' @param APPAR le nombre d'apparition par type, calculé avec mattrans.calc cf $Nb_App
+#' @param MATTRANS la matrice de transition calculée avec mattrans.calc cf $Matrice_transition
 #' @param POS "left" ou "right" donne la position des noms et nombre des types..
 #' @param XLIM permet de changer les limites de l'axe des x doit être sous format c(n,n)
 #' @param XLAB permet de changer le titre de l'axe des x doit être entre guillemets
@@ -449,7 +449,7 @@ barplot_disparitions <- function(PROP_DISP, STAT_DISP, MATTRANS, POS = "left", X
 #' # On spécifie la partie ‘suivi’ (ici les colonnes 7 à 10) :
 #' suivi <- data_ty[,7:10]
 #'
-#' Typhamat_all <- mattrans.calc2(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
+#' Typhamat_all <- mattrans.calc(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
 #'                                ARB = data_ty$ArbuArbo, LIMONS = data_ty$Limon,
 #'                                ANNEES = data_ty$Dates, IDSTATION = data_ty$ID, SUIVI = suivi)
 #' # On peut voir la Classification des stations
