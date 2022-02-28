@@ -1,17 +1,8 @@
----
-title: "TransiTypha - Tuto"
-output: 
-  html_document:
-    keep_md: yes
-editor_options: 
-  chunk_output_type: console
----
-
 Ce ttutoriel présente le package `TransiTypha` créé pour calculer et illustrer les "matrices de transitions" - ou "modèles d'états et transition" pour les différents états de *T. minima*.
 
 Voici les différents états possibles que nous avons déterminés :
 
-![](C:/Users/renaud.jaunatre/Documents/A_ANALYSES/TransiTypha/Presentation_categories.png)
+![](https://github.com/RenaudJau/TransiTypha/raw/main/Presentation_categories.png)
 
 L'idée du package `TransiTypha` est, à partir d'une cartographie des taches et de renseignements sur les stations, d'attribuer automatiquement chaque tache à une catégorie, de calculer les probabilités de transition d'un état à un autre et d'illustrer par quelques graphiques synthétiques ces dynamiques.
 
@@ -30,7 +21,7 @@ La première étape est quand même sur le terrain, il faut une cartographie des
 
 Voici un exemple avec quelques stations fictives et le tableau qui correspondrait :
 
-![](C:/Users/renaud.jaunatre/Documents/A_ANALYSES/TransiTypha/Carto_exemple_typha.png)
+![](https://github.com/RenaudJau/TransiTypha/raw/main/Carto_exemple_typha.png)
 
 ```r
 library(knitr)
