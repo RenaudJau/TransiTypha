@@ -308,7 +308,7 @@ Possibilité de customisation du graphique avec quelques autres arguments, cf `?
 
 ### La fonction `barplot_apparitions` 
 
-Idem pour les taches apparues.
+Idem pour les taches apparues :
 
 
 ```r
