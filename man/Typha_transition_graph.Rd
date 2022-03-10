@@ -19,9 +19,9 @@ Typha_transition_graph(
 )
 }
 \arguments{
-\item{MATTRANS}{la matrice de transition calculée avec mattrans.calc2 cf $Matrice_transition}
+\item{MATTRANS}{la matrice de transition calculée avec mattrans.calc cf $Matrice_transition}
 
-\item{CLASSIF}{la classification calculée avec mattrans.calc2 cf $Classification}
+\item{CLASSIF}{la classification calculée avec mattrans.calc cf $Classification}
 
 \item{ANNEES}{vecteur de même dimension que IDSTATION, l'année de visite de la station}
 
@@ -46,16 +46,16 @@ Typha_transition_graph(
 Typha_transition_graph - permet de tracer les états et les transitions
 }
 \examples{
-# Exemple avec jeu de donnÃ©es inclu dans le package
+# Exemple avec jeu de données inclu dans le package
 data_ty
 
 # contient colonnes avec les ID des stations, les Dates, les longueurs, les limons,
-# l'abondance arbustif+ arborÃ©, la frÃ©quence et 4 colonnes pour les donnÃ©es de suivi..
+# l'abondance arbustif+ arboré, la fréquence et 4 colonnes pour les données de suivi..
 
-# On spÃ©cifie la partie â€˜suiviâ€™ (ici les colonnes 7 Ã  10) :
+# On spécifie la partie ‘suivi’ (ici les colonnes 7 à 10) :
 suivi <- data_ty[,7:10]
 
-Typhamat_all <- mattrans.calc2(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
+Typhamat_all <- mattrans.calc(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
                                ARB = data_ty$ArbuArbo, LIMONS = data_ty$Limon,
                                ANNEES = data_ty$Dates, IDSTATION = data_ty$ID, SUIVI = suivi)
 # On peut voir la Classification des stations

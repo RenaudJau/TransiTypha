@@ -18,11 +18,11 @@ barplot_disparitions(
 )
 }
 \arguments{
-\item{PROP_DISP}{vecteur nommé, donne la proportion de portions de stations par type de station, calculé par mattrans.calc2 cf $Prop_Disp}
+\item{PROP_DISP}{vecteur nommé, donne la proportion de portions de stations par type de station, calculé par mattrans.calc cf $Prop_Disp}
 
-\item{STAT_DISP}{vecteur nommé, donne le nombre de station disparue entièrement par type de station, calculé par mattrans.calc2 cf $Nb_Disp}
+\item{STAT_DISP}{vecteur nommé, donne le nombre de station disparue entièrement par type de station, calculé par mattrans.calc cf $Nb_Disp}
 
-\item{MATTRANS}{la matrice de transition calculée avec mattrans.calc2 cf $Matrice_transition}
+\item{MATTRANS}{la matrice de transition calculée avec mattrans.calc cf $Matrice_transition}
 
 \item{POS}{"left" ou "right" donne la position des noms et nombre des types..}
 
@@ -43,16 +43,16 @@ barplot_disparitions(
 barplot_disparitions - trace pour l'ensemble des stations disparues, la proportion par type de station
 }
 \examples{
-# Exemple avec jeu de donnÃ©es inclu dans le package
+# Exemple avec jeu de données inclu dans le package
 data_ty
 
 # contient colonnes avec les ID des stations, les Dates, les longueurs, les limons,
-# l'abondance arbustif+ arborÃ©, la frÃ©quence et 4 colonnes pour les donnÃ©es de suivi..
+# l'abondance arbustif+ arboré, la fréquence et 4 colonnes pour les données de suivi..
 
-# On spÃ©cifie la partie â€˜suiviâ€™ (ici les colonnes 7 Ã  10) :
+# On spécifie la partie ‘suivi’ (ici les colonnes 7 à 10) :
 suivi <- data_ty[,7:10]
 
-Typhamat_all <- mattrans.calc2(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
+Typhamat_all <- mattrans.calc(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
                                ARB = data_ty$ArbuArbo, LIMONS = data_ty$Limon,
                                ANNEES = data_ty$Dates, IDSTATION = data_ty$ID, SUIVI = suivi)
 # On peut voir la Classification des stations

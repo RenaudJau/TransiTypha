@@ -20,17 +20,19 @@ mattrans.calc(
 )
 }
 \arguments{
-\item{TAILLE}{vecteur de même dimension que IDSTATION,il s'agit de la dimension en m linéaire de la station}
+\item{TAILLE}{vecteur de même dimension que IDSTATION,il s'agit de la dimension en m linéaire amont-aval de la station}
 
 \item{FREQ}{vecteur de même dimension que IDSTATION, fréquence de Typha, issue de ligne de point contact ou a minima estimation du pourcentage de recouvrement}
 
-\item{ARB}{vecteur de même dimension que IDSTATION, le recouvrement en espèces arbustives et arborées : peut provenir de lignes de points contact ou d'estimation visuelles de pourcentages de recouvrement, il est préférable d'avoir donné une estimation totale de ces recouvrement plutôt que la somme des recouvrement de chacune des espèces arborées et arbustives (qui a tendance à surestimer le total..).}
+\item{ARB}{vecteur de même dimension que IDSTATION, le recouvrement en espèces arbustives et arborées : peut provenir de lignes de points contact ou d'estimations visuelles de pourcentages de recouvrement, il est préférable d'avoir donné une estimation totale de ces recouvrements plutôt que la somme des recouvrements de chacune des espèces arborées et arbustives (qui a tendance à surestimer le total..).}
 
 \item{LIMONS}{vecteur de même dimension que IDSTATION, peut provenir de lignes de points contact ou d'estimation visuelles de pourcentages de recouvrement, servira à classer les petites stations avec beaucoup de galets}
 
 \item{ANNEES}{vecteur de même dimension que IDSTATION, l'année de visite de la station}
 
-\item{IDSTATION}{tableau dont le nombre de colonne corresponds à la dimension de IDSTATION et correspondant à la correspondance du devenir des stations}
+\item{IDSTATION}{vecteur de même dimension que IDSTATION,l'identifiant de la station/tache : ne doit pas contenir l'année}
+
+\item{SUIVI}{tableau dont le nombre de colonne correspond à la dimension de IDSTATION et correspondant à la correspondance du devenir des stations}
 
 \item{s_petite_taille}{valeur unique, valeur seuil pour la taille en dessous de laquelle on entre dans la catégorie "Petite"}
 
@@ -51,7 +53,7 @@ mattrans.calc(
 
 \item{N_NA}{Nb de station pour lesquelles il n'y a pas d'info pour la transition (en excluant celles de la dernière année de suivi, évidemment..)}
 
-\item{NDisptot}{Nb de station ou portion de station disparues, !! ne corresponds pas forcément au nombre de stations disparues..}
+\item{NDisptot}{Nb de station ou portion de station disparues, !! ne correspond pas forcément au nombre de stations disparues..}
 
 \item{Nb_Disp}{vecteur nommé, donne le nombre de station disparue entièrement par type de station}
 
@@ -63,16 +65,16 @@ mattrans.calc(
 mattrans.calc - Calcul des éléments pour la matrice de transition et les représentations graphiques
 }
 \examples{
-# Exemple avec jeu de donnÃ©es inclu dans le package
+# Exemple avec jeu de données inclu dans le package
 data_ty
 
 # contient colonnes avec les ID des stations, les Dates, les longueurs, les limons,
-# l'abondance arbustif+ arborÃ©, la frÃ©quence et 4 colonnes pour les donnÃ©es de suivi..
+# l'abondance arbustif+ arboré, la fréquence et 4 colonnes pour les données de suivi..
 
-# On spÃ©cifie la partie â€˜suiviâ€™ (ici les colonnes 7 Ã  10) :
+# On spécifie la partie ‘suivi’ (ici les colonnes 7 à 10) :
 suivi <- data_ty[,7:10]
 
-Typhamat_all <- mattrans.calc2(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
+Typhamat_all <- mattrans.calc(TAILLE = data_ty$Longueur, FREQ = data_ty$Freq,
                                ARB = data_ty$ArbuArbo, LIMONS = data_ty$Limon,
                                ANNEES = data_ty$Dates, IDSTATION = data_ty$ID, SUIVI = suivi)
 # On peut voir la Classification des stations
