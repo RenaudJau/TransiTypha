@@ -1,12 +1,12 @@
 #' mattrans.calc - Calcul des éléments pour la matrice de transition et les représentations graphiques
 #'
-#' @param TAILLE vecteur de même dimension que IDSTATION,il s'agit de la dimension en m linéaire de la station
+#' @param TAILLE vecteur de même dimension que IDSTATION,il s'agit de la dimension en m linéaire amont-aval de la station
 #' @param FREQ  vecteur de même dimension que IDSTATION, fréquence de Typha, issue de ligne de point contact ou a minima estimation du pourcentage de recouvrement
-#' @param ARB vecteur de même dimension que IDSTATION, le recouvrement en espèces arbustives et arborées : peut provenir de lignes de points contact ou d'estimation visuelles de pourcentages de recouvrement, il est préférable d'avoir donné une estimation totale de ces recouvrement plutôt que la somme des recouvrement de chacune des espèces arborées et arbustives (qui a tendance à surestimer le total..).
+#' @param ARB vecteur de même dimension que IDSTATION, le recouvrement en espèces arbustives et arborées : peut provenir de lignes de points contact ou d'estimations visuelles de pourcentages de recouvrement, il est préférable d'avoir donné une estimation totale de ces recouvrements plutôt que la somme des recouvrements de chacune des espèces arborées et arbustives (qui a tendance à surestimer le total..).
 #' @param LIMONS vecteur de même dimension que IDSTATION, peut provenir de lignes de points contact ou d'estimation visuelles de pourcentages de recouvrement, servira à classer les petites stations avec beaucoup de galets
 #' @param ANNEES vecteur de même dimension que IDSTATION, l'année de visite de la station
 #' @param IDSTATION vecteur de même dimension que IDSTATION,l'identifiant de la station/tache : ne doit pas contenir l'année
-#' @param IDSTATION tableau dont le nombre de colonne corresponds à la dimension de IDSTATION et correspondant à la correspondance du devenir des stations
+#' @param SUIVI tableau dont le nombre de colonne correspond à la dimension de IDSTATION et correspondant à la correspondance du devenir des stations
 #' @param s_petite_taille valeur unique, valeur seuil pour la taille en dessous de laquelle on entre dans la catégorie "Petite"
 #' @param s_petite_freq valeur unique, valeur seuil pour la fréquence en dessous de laquelle on entre dans la catégorie "Petite"
 #' @param s_moyenne_freq valeur unique, valeur seuil pour la fréquence en dessous de laquelle on entre dans la catégorie "Moyenne"
@@ -17,7 +17,7 @@
 #' @return \item{Matrice_transition}{matrice carrée de la dimension des types de stations, donne les probabilités de transition d'un état à l'autre, les lignes représentant les points de départs et les colonnes les points d'arrivée}
 #' @return \item{Nb_type}{vecteur nommé, donne le nombre de station par type de station}
 #' @return \item{N_NA}{Nb de station pour lesquelles il n'y a pas d'info pour la transition (en excluant celles de la dernière année de suivi, évidemment..)}
-#' @return \item{NDisptot}{Nb de station ou portion de station disparues, !! ne corresponds pas forcément au nombre de stations disparues..}
+#' @return \item{NDisptot}{Nb de station ou portion de station disparues, !! ne correspond pas forcément au nombre de stations disparues..}
 #' @return \item{Nb_Disp}{vecteur nommé, donne le nombre de station disparue entièrement par type de station}
 #' @return \item{Prop_Disp}{vecteur nommé, donne la proportion de portions de stations par type de station}
 #' @return \item{Nb_App}{vecteur nommé, donne le nombre de station apparues par type de station}

@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-Ce ttutoriel présente le package `TransiTypha` créé pour calculer et illustrer les "matrices de transitions" - ou "modèles d'états et transition" pour les différents états de *T. minima*.
+Ce tutoriel présente le package `TransiTypha` créé pour calculer et illustrer les "matrices de transitions" - ou "modèles d'états et transition" pour les différents états de *T. minima*.
 
 Voici les différents états possibles que nous avons déterminés :
 
@@ -19,13 +19,13 @@ L'idée du package `TransiTypha` est, à partir d'une cartographie des taches et
 
 La première étape est quand même sur le terrain, il faut une cartographie des taches et stations de *T. minima*, avec quelques informations sur chaque tache :
 
-* la taille `TAILLE` : il s'agit de la dimension en m linéaire de la station
-* la fréquence `FREQ`: cf ligne de point contact ou *a minima* estimation du pourcentage de recouvrement
-* le recouvrement en espèces arbustives et arborées `ARB` : peut provenir de lignes de points contact ou d'estimation visuelles de pourcentages de recouvrement, il est préférable d'avoir donné une estimation totale de ces recouvrement plutôt que la somme des recouvrement de chacune des espèces arborées et arbustives (qui a tendance à surestimer le total..).
+* la taille `TAILLE` : il s'agit de la dimension en m linéaire amont-aval de la station
+* la fréquence `FREQ`: cf ligne de point contact ou *a minima* estimation du pourcentage de recouvrement de *T. minima*
+* le recouvrement en espèces arbustives et arborées `ARB` : peut provenir de lignes de points contact ou d'estimations visuelles de pourcentages de recouvrement, il est préférable d'avoir donné une estimation totale de ces recouvrements plutôt que la somme des recouvrements de chacune des espèces arborées et arbustives (qui a tendance à surestimer le total..).
 * le recouvrement sablo-limoneux `LIMONS`: peut provenir de lignes de points contact ou d'estimation visuelles de pourcentages de recouvrement, servira à classer les petites stations avec beaucoup de galets.
 * l'année de visite de la station `ANNEES`
 * l'identifiant de la station/tache `IDSTATION` : ne doit pas contenir l'année
-* les correspondances avec les stations des années suivantes `SUIVI` : Il s'agit d'un tableau, établi à partir de la cartographie, dont chaque ligne corresponds aux stations, et les différentes colones c'est uniquement si la station à l'année n se divise en année n+1... cf ci après
+* les correspondances avec les stations des années suivantes `SUIVI` : Il s'agit d'un tableau, établi à partir de la cartographie, dont chaque ligne correspond aux stations, et les différentes colones c'est uniquement si la station à l'année n se divise en année n+1... cf ci après
 * possibilité d'avoir d'autres colonnes dans lesquelles se trouvent des informations sur le type de stations (naturelle, restaurée, etc.) ou la zone géographique (amont d'un barrage/aval, etc.).
 
 Voici un exemple avec quelques stations fictives et le tableau qui correspondrait :
@@ -38,14 +38,15 @@ library(TransiTypha)
 scroll_box(kable_input = kable_styling(kable(data_ty)),height = "300px")
 ```
 
+
 Conseils pour le remplissage des colonnes de suivi :
 
-* cas simple : la tache 1.1 en 2012, devient la tache 1.1 en 2015, dans la 1ere colonne de suivi on écrit juste 1.1
-* disparition : la tache 3.1 en 2012 disparaît en 2015, dans la 1ere colonne de suivi on écrit DISP
+* cas simple : la tache 1.1 en 2012, devient la tache 1.1 en 2015, dans la 1ère colonne de suivi on écrit juste 1.1
+* disparition : la tache 3.1 en 2012 disparaît en 2015, dans la 1ère colonne de suivi on écrit DISP
 * division : La tache 5.1 en 2018 se divise en 2 taches en 2021, on écrit 5.1 et 5.2 dans les 2 premières colones de suivi.
 * réduction : La tache 1.1 de 2018 diminue de moitié en 2021, on peut écrire 1.1 et DISP pour montrer qu'une partie a disparu. Attention par contre à ne pas mettre DISP dans la première colonne, sinon cette tache sera considérée comme complètement disparue pour le graphique qui se focalise sur les disparitions.
-* dans toutes les cases vide, mettre des NA (ces cases ne seront pas prises en compte..). Cela inclut toutes les taches de la dernière année de suivi, qui ne seront pas prises en compte comme point de départ.
-* si pour x raisons, une station 10.2 de 2018 est devenu la station 10.2 de 2021, mais qu'il n'y a pas les données fréquence/longueur/limons, etc. pour 2021.. il faut mettre alors NA. Cette données ne sera pas prise en compte (mais elle ne comptera pas dans les disparues non plus..).
+* dans toutes les cases vides, mettre des NA (ces cases ne seront pas prises en compte..). Cela inclut toutes les taches de la dernière année de suivi, qui ne seront pas prises en compte comme point de départ.
+* si pour x raisons, une station 10.2 de 2018 est devenu la station 10.2 de 2021, mais qu'il n'y a pas les données fréquence/longueur/limons, etc. pour 2021.. il faut mettre alors NA. Cette donnée ne sera pas prise en compte (mais elle ne comptera pas dans les disparues non plus..).
 
 Ce n'est pas possible d'exprimer toute la finesse de ce qui se passe sur le terrain, mais autant que possible (sans doute à 10% prêt?) ça vaut le coup d'exprimer ces complexités. De toutes manières c'est indispensable pour les cas de divisions de taches.. Possibilité de mettre autant de colonnes que l'on souhaite dans le tableau suivi (ici 4..).
 
@@ -53,7 +54,31 @@ Ce n'est pas possible d'exprimer toute la finesse de ce qui se passe sur le terr
 
 ### Installation du package :
 
-A venir.. j'espère un jour
+Si ce n'est pas encore fait, vous aurez besoin de `devtools`:
+
+```{r eval=FALSE}
+install.packages(devtools)
+```
+
+de le charger `devtools:
+
+```{r eval=FALSE}
+library(devtools) 
+```
+
+D'installer le package `TransiTypha`:
+
+```{r eval=FALSE}
+install_github("RenaudJau/TransiTypha")
+```
+
+Et de le charger :
+
+```{r}
+library(TransiTypha)
+```
+
+Les prochaine fois, il n'y a que la dernière ligne à envoyer..
 
 ### Ouverture du package
 
@@ -116,7 +141,7 @@ En utilisation, simplifié, il n'y a pas besoin de définir les seuils pour chaq
 * `s_petite_taille` (10 par défaut) : seuil de la taille en m pour passer de petite à moyenne tache
 * `s_petite_freq` (0.1 par défaut) : seuil de la fréquence pour passer de petite à moyenne tache
 * `s_moyenne_freq` (0.3 par défaut) : seuil de la fréquence pour passer de moyenne à grande tache
-* `s_limons` (0.2 par défaut) : seuil de recouvrement pour passer de petites galets à autre forme de petite
+* `s_limons` (0.2 par défaut) : seuil de recouvrement pour passer de petite galets à autre forme de petite
 * `s_arb` (0.3 par défaut) : seuil de recouvrement des strates arbustives et arborées pour passer de type pionnière à mature
 
 ```{r eval=FALSE}
@@ -172,7 +197,7 @@ Possibilité de customisation du graphique avec quelques autres arguments, cf `?
 
 ### La fonction `barplot_disparitions` 
 
-Permet de tracer le bilan des disparitions (le n, corresponds au nombre de stations complètement disparues sur la période donnée), alors que la proportion correspond au nombre de portion de tache (si une tache a été diminuée de moitié par exemple et que ça a été bien spécifié dans le tableau suivi)
+Permet de tracer le bilan des disparitions (le n, correspond au nombre de stations complètement disparues sur la période donnée), alors que la proportion correspond au nombre de portion de tache (si une tache a été diminuée de moitié par exemple et que ça a été bien spécifié dans le tableau suivi)
 
 ```{r}
 barplot_disparitions(PROP_DISP = Typhamat_all$Prop_Disp, STAT_DISP = Typhamat_all$Nb_Disp,
